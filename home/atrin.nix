@@ -22,7 +22,6 @@
   
   programs.home-manager.enable = true;
 
-	programs.hyprland.enable = true;
 	programs.kitty = {
 		enable = true;
 		font = {

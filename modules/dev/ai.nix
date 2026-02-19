@@ -1,4 +1,4 @@
-{ config, pkgs, nixpkgs, ... }:
+{ config, pkgs, ... }:
 {
 
 	services.ollama = {
@@ -7,8 +7,8 @@
 	};
 
 	home.packages = [
-		nixpkgs.llama.cpp
+		# nixpkgs.llama.cpp
 
-		nodePackages.opencode-ai
+		# nodePackages.opencode-ai
 	];
 }

@@ -11,7 +11,8 @@
 		nodePackages.prettier
 		nodePackages.eslint
 		nodePackages.tailwindcss
-		nodePackages."@slidev/cli"
+		# nodePackages."@slidev/cli"
+		# nodePackages.opencode-ai
 	];
 
 	home.sessionVariables = {

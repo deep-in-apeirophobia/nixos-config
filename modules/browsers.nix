@@ -17,7 +17,7 @@ let
 		(extension "vue-js-devtools" "{5caff8cc-3d2e-4110-a88a-003cc85b3858}")
 		(extension "hoppscotch" "postwoman-firefox@postwoman.io")
 		(extension "ublock-origin" "uBlock0@raymondhill.net")
-	]
+	];
 
 in
 {
@@ -25,40 +25,47 @@ in
 		inputs.helium.packages.${pkgs.stdenv.hostPlatform.system}.default
 
 		(pkgs.wrapFirefox
-			inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
-				{
-					ExtensionSettings = builtins.listToAttrs extensions;
-					SearchEngines = {
-						Default = "und";
-						Add = [
-							{
-								Name = "nixpkgs packages";
-								URLTemplate = "https://search.nixos.org/packages?query={searchTerms}";
-								IconURL = "https://wiki.nixos.org/favicon.ico";
-								Alias = "@np";
-							}
-							{
-								Name = "NixOS options";
-								URLTemplate = "https://search.nixos.org/options?query={searchTerms}";
-								IconURL = "https://wiki.nixos.org/favicon.ico";
-								Alias = "@no";
-							}
-							{
-								Name = "NixOS Wiki";
-								URLTemplate = "https://wiki.nixos.org/w/index.php?search={searchTerms}";
-								IconURL = "https://wiki.nixos.org/favicon.ico";
-								Alias = "@nw";
-							}
-							{
-								Name = "Undcuk";
-								URLTemplate = "https://unduck.link?q={searchTerms}";
-								IconURL = "https://unduck.link/search.svg";
-								Alias = "@und";
-							}
-						];
-					};
-				};
+      inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.zen-browser-unwrapped
 
+			{
+				extraPrefs = lib.concatLines (
+					lib.mapAttrsToList (
+						name: value: ''lockPref(${lib.strings.toJSON name}, ${lib.strings.toJSON value});''
+					) prefs
+				);
+
+				{
+				ExtensionSettings = builtins.listToAttrs zenExtensions;
+				SearchEngines = {
+					Default = "und";
+					Add = [
+						{
+							Name = "nixpkgs packages";
+							URLTemplate = "https://search.nixos.org/packages?query={searchTerms}";
+							IconURL = "https://wiki.nixos.org/favicon.ico";
+							Alias = "@np";
+						}
+						{
+							Name = "NixOS options";
+							URLTemplate = "https://search.nixos.org/options?query={searchTerms}";
+							IconURL = "https://wiki.nixos.org/favicon.ico";
+							Alias = "@no";
+						}
+						{
+							Name = "NixOS Wiki";
+							URLTemplate = "https://wiki.nixos.org/w/index.php?search={searchTerms}";
+							IconURL = "https://wiki.nixos.org/favicon.ico";
+							Alias = "@nw";
+						}
+						{
+							Name = "Undcuk";
+							URLTemplate = "https://unduck.link?q={searchTerms}";
+							IconURL = "https://unduck.link/search.svg";
+							Alias = "@und";
+						}
+					];
+				};
+			}
 			}
 		)
 

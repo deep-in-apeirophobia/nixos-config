@@ -8,7 +8,9 @@
 		# ./modules/gaming.nix
 	];
 
-	boot.loader.grub.enable = true;
+	# boot.loader.grub.enable = true;
+	boot.loader.systemd-boot.enabled = true;
+	boot.loader.efi.canTouchEfiVariables = true;
 
 	services.xserver.videoDrivers = [ "nvidia" ];
 	hardware.nvidia.powerManagement.enable = true;
@@ -34,6 +36,7 @@
 			xdg-desktop-portal-hyprland
 		];
 	};
+	programs.hyprland.enable = true;
 
 	fonts.packages = with pkgs; [
 		noto-fonts
@@ -78,8 +81,9 @@
   };
 
 	environment.systemPackages = with pkgs; [
+		kitty
 		vim
-		neovim
+		# neovim
 		docker
 		docker-desktop
 		qemu_kvm
