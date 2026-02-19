@@ -2,7 +2,7 @@
 {
 	home.packages = with pkgs; [
 		emacs
-		doom-emacs
+		emacsPackages.doom
 		ripgrep
 		fd
 	];
