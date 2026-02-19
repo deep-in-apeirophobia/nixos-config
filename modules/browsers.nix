@@ -34,38 +34,38 @@ in
 					) prefs
 				);
 
-				{
-				ExtensionSettings = builtins.listToAttrs zenExtensions;
-				SearchEngines = {
-					Default = "und";
-					Add = [
-						{
-							Name = "nixpkgs packages";
-							URLTemplate = "https://search.nixos.org/packages?query={searchTerms}";
-							IconURL = "https://wiki.nixos.org/favicon.ico";
-							Alias = "@np";
-						}
-						{
-							Name = "NixOS options";
-							URLTemplate = "https://search.nixos.org/options?query={searchTerms}";
-							IconURL = "https://wiki.nixos.org/favicon.ico";
-							Alias = "@no";
-						}
-						{
-							Name = "NixOS Wiki";
-							URLTemplate = "https://wiki.nixos.org/w/index.php?search={searchTerms}";
-							IconURL = "https://wiki.nixos.org/favicon.ico";
-							Alias = "@nw";
-						}
-						{
-							Name = "Undcuk";
-							URLTemplate = "https://unduck.link?q={searchTerms}";
-							IconURL = "https://unduck.link/search.svg";
-							Alias = "@und";
-						}
-					];
-				};
-			}
+				extraPolicies = {
+					ExtensionSettings = builtins.listToAttrs zenExtensions;
+					SearchEngines = {
+						Default = "und";
+						Add = [
+							{
+								Name = "nixpkgs packages";
+								URLTemplate = "https://search.nixos.org/packages?query={searchTerms}";
+								IconURL = "https://wiki.nixos.org/favicon.ico";
+								Alias = "@np";
+							}
+							{
+								Name = "NixOS options";
+								URLTemplate = "https://search.nixos.org/options?query={searchTerms}";
+								IconURL = "https://wiki.nixos.org/favicon.ico";
+								Alias = "@no";
+							}
+							{
+								Name = "NixOS Wiki";
+								URLTemplate = "https://wiki.nixos.org/w/index.php?search={searchTerms}";
+								IconURL = "https://wiki.nixos.org/favicon.ico";
+								Alias = "@nw";
+							}
+							{
+								Name = "Undcuk";
+								URLTemplate = "https://unduck.link?q={searchTerms}";
+								IconURL = "https://unduck.link/search.svg";
+								Alias = "@und";
+							}
+						];
+					};
+				}
 			}
 		)
 
