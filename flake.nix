@@ -31,7 +31,7 @@
 	};
 	outputs = {self, nixpkgs, home-manager, ...}@inputs :
 		let
-			mkNixcConfig = { hostname, username, system ? "x86_64-linux", }:
+			mkNixoscConfig = { hostname, username, system ? "x86_64-linux", }:
 				nixpkgs.lib.nixosSystem {
 					inherit system;
 					specialArgs = { inherit inputs hostname username; };
