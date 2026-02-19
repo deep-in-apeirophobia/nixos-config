@@ -41,7 +41,7 @@
 		noto-fonts-emoji
 		liberation_ttf
 		fira-code
-		(nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" ]; })
+		(nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" "Noto" "Mononoki" "FantasqueSansMono" ]; })
 	];
 
 	users.users.${username} = {
