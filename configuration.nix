@@ -1,8 +1,11 @@
 { nixpkgs, conf, lib, pkgs, hostname, username, ...}: 
 {
+	nixpkgs.config.allowUnfree = true;
+
 	imports = [
 		./hardware-configuration.nix
 		./modules/proxychains.nix
+		# ./modules/gaming.nix
 	];
 
 	boot.loader.grub.enable = true;
@@ -43,7 +46,7 @@
 
 	users.users.${username} = {
 		isNormalUser = true;
-		extraGroups = [ "wheel" ];
+		extraGroups = [ "wheel" "docker" "wireshark" ];
 
 	};
 
@@ -52,6 +55,8 @@
 	services.power-profiles-daemon.enable = true;
 	services.blueman.enable = true;
 	hardware.bluetooth.enable = true;
+	programs.wireshark.enable = true;
+	virtualisation.docker.enable = true;
 	programs.mtr.enable = true;
 	programs.gnupg.agent = {
 		enable = true;
@@ -70,9 +75,11 @@
     enable = true;
   };
 
-	environment.systemPackages = [
+	environment.systemPackages = with pkgs; [
 		vim
 		neovim
+		docker
+		docker-desktop
 
 		vlc
 
