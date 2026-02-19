@@ -1,5 +1,5 @@
 
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, inputs, lib, ... }:
 let
 	extension = shortId: guid: {
     name = guid;
@@ -7,6 +7,10 @@ let
       install_url = "https://addons.mozilla.org/en-US/firefox/downloads/latest/${shortId}/latest.xpi";
       installation_mode = "normal_installed";
     };
+  };
+	
+  prefs = {
+    # Check these out at about:config
   };
 
 	zenExtensions = [
@@ -65,7 +69,7 @@ in
 							}
 						];
 					};
-				}
+				};
 			}
 		)
 
