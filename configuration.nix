@@ -14,6 +14,7 @@
 
 	services.xserver.videoDrivers = [ "nvidia" ];
 	hardware.nvidia.powerManagement.enable = true;
+	hardware.nvidia.open = true;
 	hardware.opengl.enable = true;
 
 	networking.networkmanager.enable = true;
