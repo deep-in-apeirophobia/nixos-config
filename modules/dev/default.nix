@@ -16,6 +16,7 @@
 		openssl.dev
 		zlib
 		libffi
+		direnv
 		vscode
 		octave
 		kubectl
