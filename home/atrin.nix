@@ -22,7 +22,12 @@
   programs.home-manager.enable = true;
 
 	programs.hyprland.enable = true;
-	programs.kitty.enable = true;
+	programs.kitty = {
+		enable = true;
+		font = {
+			name = "Mononoki Nerd Font";
+		};
+	};
 
 	wayland.windowManager.hyprland.enable = true;
 
