@@ -18,6 +18,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+		nvim-config = {
+			url = "github:deep-in-apeirophobia/Nvim-Config/main";
+			flake = false;
+		};
+
 	};
 	outputs = {self, nixpkgs, home-manager, ...}@inputs :
 		let

@@ -6,6 +6,15 @@
   imports = [
     ../modules/shell.nix
     ../modules/git.nix
+    ../modules/hyprland.nix
+    ../modules/doom-emacs.nix
+    ../modules/neovim.nix
+    ../modules/utils.nix
+    ../modules/browsers.nix
+
+    ../modules/media/common.nix
+
+    ../modules/dev/default.nix
   ];
   
   programs.home-manager.enable = true;

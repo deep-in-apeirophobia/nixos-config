@@ -2,6 +2,7 @@
 {
 	imports = [
 		./hardware-configuration.nix
+		./modules/proxychains.nix
 	];
 
 	boot.loader.grub.enable = true;
@@ -17,9 +18,19 @@
 		enable = true;
 		alsa.enable = true;
 		pulse.enable = true;
+		wireplumber.enable = true;
 	};
 
+	services.upower.enable = true;
+
 	services.printing.enable = true;
+
+	xdg.portal = {
+		enable = true;
+		extraPortals = with pkgs; [
+			xdg-desktop-portal-hyprland
+		];
+	};
 
 	fonts.packages = with pkgs; [
 		noto-fonts
@@ -27,6 +38,7 @@
 		noto-fonts-emoji
 		liberation_ttf
 		fira-code
+		(nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" ]; })
 	];
 
 	users.users.${username} = {
@@ -37,6 +49,9 @@
 
 
 	services.openssh.enable = true;
+	services.power-profiles-daemon.enable = true;
+	services.blueman.enable = true;
+	hardware.bluetooth.enable = true;
 	programs.mtr.enable = true;
 	programs.gnupg.agent = {
 		enable = true;
