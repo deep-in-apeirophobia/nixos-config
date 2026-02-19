@@ -22,12 +22,11 @@
 		htop
 
 		# File manager + archive tools
-		dolphin
-		ark
+		kdePackages.dolphin
+		kdePackages.ark
 
 		# PDF viewer
-		okular
-		tor-browser
+		kdePackages.okular
 		wine
 
 		# Hyprland essentials
