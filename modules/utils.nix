@@ -11,6 +11,8 @@
 		fd
 		fzf
 		zoxide
+		eza
+		bat
 		file
 		unzip
 		zip
@@ -25,6 +27,8 @@
 
 		# PDF viewer
 		okular
+		tor-browser
+		wine
 
 		# Hyprland essentials
 		xwayland
