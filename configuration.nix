@@ -86,7 +86,6 @@
 		vim
 		# neovim
 		docker
-		docker-desktop
 		qemu_kvm
 		virtiofsd
 		libvirt
