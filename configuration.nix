@@ -42,10 +42,14 @@
 	fonts.packages = with pkgs; [
 		noto-fonts
 		noto-fonts-cjk-sans
-		noto-fonts-emoji
+		noto-fonts-color-emoji
 		liberation_ttf
 		fira-code
-		(nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" "Noto" "Mononoki" "FantasqueSansMono" ]; })
+		nerd-fonts.fira-code
+		nerd-fonts.jetbrain-mono
+		nerd-fonts.noto
+		nerd-fonts.mononoki
+		nerd-fonts.fantanque-san-mono
 	];
 
 	users.users.${username} = {
@@ -99,7 +103,7 @@
 
 		git
 
-		tar
+		gnutar
 
 		btop
 		tree
