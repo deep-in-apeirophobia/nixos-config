@@ -46,7 +46,7 @@
 
 	users.users.${username} = {
 		isNormalUser = true;
-		extraGroups = [ "wheel" "docker" "wireshark" ];
+		extraGroups = [ "wheel" "docker" "wireshark" "libvirtd" "kvm" ];
 
 	};
 
@@ -57,6 +57,8 @@
 	hardware.bluetooth.enable = true;
 	programs.wireshark.enable = true;
 	virtualisation.docker.enable = true;
+	virtualisation.libvirtd.enable = true;
+	programs.virt-manager.enable = true;
 	programs.mtr.enable = true;
 	programs.gnupg.agent = {
 		enable = true;
@@ -80,6 +82,11 @@
 		neovim
 		docker
 		docker-desktop
+		qemu_kvm
+		virtiofsd
+		libvirt
+		dnsmasq
+		bridge-utils
 
 		vlc
 
