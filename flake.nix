@@ -19,12 +19,12 @@
     };
 
 		nvim-config = {
-			url = "github:deep-in-apeirophobia/Nvim-Config/main";
+			url = "github:deep-in-apeirophobia/Nvim-Config";
 			flake = false;
 		};
 
 		tmux-config = {
-			url = "github:deep-in-apeirophobia/tmux-config/main";
+			url = "github:deep-in-apeirophobia/tmux-config";
 			flake = false;
 		};
 
