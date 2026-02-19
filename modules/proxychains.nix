@@ -1,11 +1,5 @@
 { config, pkgs, ... }:
 {
-	home.packages = with pkgs; [
-		audacity
-		musescore
-		muse-sounds-manager
-	];
-
 	programs.proxychains = {
     enable = true;
 		proxyDNS = true;
