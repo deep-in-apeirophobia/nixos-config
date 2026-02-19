@@ -11,14 +11,14 @@
 		./web.nix
 	];
 
-	home.packages = [
+	home.packages = with pkgs; [
 		obsidian
-
 		openssl.dev
 		zlib
 		libffi
-
 		vscode
-
+		octave
+		kubectl
+		doctl
 	];
 }
