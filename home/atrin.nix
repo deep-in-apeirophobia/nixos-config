@@ -9,6 +9,7 @@
     ../modules/hyprland.nix
     ../modules/doom-emacs.nix
     ../modules/neovim.nix
+    ../modules/tmux.nix
     ../modules/communications.nix
     ../modules/libreoffice.nix
     ../modules/utils.nix

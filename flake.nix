@@ -23,6 +23,11 @@
 			flake = false;
 		};
 
+		tmux-config = {
+			url = "github:deep-in-apeirophobia/tmux-config/main";
+			flake = false;
+		};
+
 	};
 	outputs = {self, nixpkgs, home-manager, ...}@inputs :
 		let
