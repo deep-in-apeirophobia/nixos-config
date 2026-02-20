@@ -26,7 +26,7 @@ let
 in
 {
 	home.packages = [
-		tor-browser
+		pkgs.tor-browser
 
 		inputs.helium.packages.${pkgs.stdenv.hostPlatform.system}.default
 
