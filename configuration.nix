@@ -8,6 +8,51 @@
 		# ./modules/gaming.nix
 	];
 
+	###################
+	# bad conneciton  #
+	###################
+	# Add nix mirrors
+	nix.settings = {
+		substituters = [
+			"https://cache.nixos.org"
+			"https://nix-community.cachix.org"
+			"https://cache.nixos.org?priority=10"
+			"https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"  # China mirror
+			"https://mirrors.ustc.edu.cn/nix-channels/store"           # Another China mirror
+		]; 
+		connect-timeout = 30;        # Default is often too low
+		stalled-download-timeout = 90;
+
+		# Retry settings
+		max-jobs = "auto";
+		cores = 0;                   # Use all cores
+
+		# Download settings
+		http-connections = 4;        # Reduce parallel connections if unstable
+		max-substitution-jobs = 2;   # Limit concurrent downloads
+
+		# Keep failed downloads for resume (if supported)
+		keep-failed = false;
+
+		download-redirect-executable = true;
+
+		fallback = true;             # Build from source if substituter fails
+		max-build-jobs = 4;          # Adjust based on your CPU
+
+		# proxy = "http://your-proxy:port";
+	};
+
+	# Create a wrapper script for nix to use aria2
+	environment.etc."nix/nix.conf".text = ''
+		download-redirect-executable = true
+	'';
+
+	systemd.services.nix-daemon.serviceConfig = {
+		LimitNOFILE = 65536;
+		TimeoutStartSec = "infinity";
+	};
+	###################
+
 	# boot.loader.grub.enable = true;
 	boot.loader.systemd-boot.enable = true;
 	boot.loader.efi.canTouchEfiVariables = true;
@@ -86,6 +131,9 @@
   };
 
 	environment.systemPackages = with pkgs; [
+		# for unstable connections
+		aria2
+
 		kitty
 		vim
 		# neovim
