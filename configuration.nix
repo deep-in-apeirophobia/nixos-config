@@ -178,7 +178,24 @@
 		gnumake
 		python3
 		nodejs
+
+		# tor
+		obfs4
+		webtunnel
+		nyx
 	];
+	
+	# tor
+	
+	services.tor = {
+		enable = true;
+		settings = {
+			# UseBridges = true;
+			# ClientTransportPlugin = "obfs4 exec ${pkgs.obfs4}/bin/lyrebird";
+			# Bridge = "obfs4 IP:ORPort [fingerprint]";
+		};
+	};
+
 
 	# Maybe change?
 	networking.firewall.enable = false;
