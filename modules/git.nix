@@ -3,12 +3,12 @@
 	programs.git = {
     enable = true;
     
-    extraConfig = {
+    settings = {
       init.defaultBranch = "main";
       pull.rebase = true;
       push.autoSetupRemote = true;
     };
 
-    delta.enable = true;
   };
+  programs.delta.enable = true;
 }

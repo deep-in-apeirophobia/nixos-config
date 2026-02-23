@@ -36,8 +36,8 @@
 	home.username = "atrin";
 	home.homeDirectory = "/home/atrin";
 
-	programs.git.userName = "Atrin Hojjat";
+	programs.git.settings.user.name = "Atrin Hojjat";
 	# programs.git.userEmail = "hi@atrin.dev";
-	programs.git.userEmail = "atrin.hojjat@gmail.com";
+	programs.git.settings.user.email = "atrin.hojjat@gmail.com";
 
 }
