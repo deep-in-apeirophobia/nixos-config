@@ -92,10 +92,10 @@
 		liberation_ttf
 		fira-code
 		nerd-fonts.fira-code
-		nerd-fonts.jetbrain-mono
+		nerd-fonts.jetbrains-mono
 		nerd-fonts.noto
 		nerd-fonts.mononoki
-		nerd-fonts.fantanque-san-mono
+		nerd-fonts.fantasque-sans-mono
 	];
 
 	users.users.${username} = {
