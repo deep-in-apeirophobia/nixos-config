@@ -3,7 +3,7 @@
 	home.packages = with pkgs; [
 		audacity
 		musescore
-		muse-sounds-manager
+		# muse-sounds-manager
 	];
 
 	programs.obs-studio = {
