@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 {
 	home.packages = with pkgs; [
-		rustup
+		# rustup
 		rust-analyzer
 		cargo-edit
 		cargo-watch

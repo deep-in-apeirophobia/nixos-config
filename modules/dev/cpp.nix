@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 {
 	home.packages = with pkgs; [
-		gcc
+		gcc-unwrapped
 		clang
 		clang-tools
 
@@ -21,7 +21,7 @@
 	];
 
 	home.sessionVariables = {
-    CC = "gcc";
-    CXX = "g++";
+    CC = "${pkgs.gcc}/bin/gcc";
+    CXX = "${pkgs.gcc}/bin/g++";
   };
 }
