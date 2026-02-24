@@ -1,4 +1,4 @@
-{ config, pkgs, builtins, ... }:
+{ config, pkgs, ... }:
 {
 	systemd.user.services.polkit-gnome = {
 		Unit = {
