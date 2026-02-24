@@ -56,6 +56,7 @@
 	# boot.loader.grub.enable = true;
 	boot.loader.systemd-boot.enable = true;
 	boot.loader.efi.canTouchEfiVariables = true;
+	boot.plymouth.enable = true;
 
 	services.xserver.videoDrivers = [ "nvidia" ];
 	hardware.nvidia.powerManagement.enable = true;
