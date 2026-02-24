@@ -121,6 +121,7 @@
 	};
 
 	nixpkgs.config.chromium.commandLineArgs = "--enable-features=UseOzonePlatform --ozone-platform=wayland";
+	nix.settings.experimental-features = "nix-command flakes"
 
 	programs.firefox = {
     enable = true;
