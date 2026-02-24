@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, builtins, ... }:
 {
 	systemd.user.services.polkit-gnome = {
 		Unit = {
@@ -34,7 +34,7 @@
 					"$mod SHIFT, ${key}, movetoworkspace, ${ws}"
 					"$mod CTRL, ${key}, movetoworkspacesilent, ${ws}"
 				]
-			) 10));
+			) 10))
 			"$mod, S, togglespecialworkspace, scratchpad"
 			"$mod SHIFT, S, movetoworkspace, special:scratchpad"
 
@@ -46,6 +46,8 @@
 			"$mod, Q, killactive,"
 			"$mod, F, fullscreen,"
 
+			"$mod, mouse:272, movewindow"
+			"$mod, mouse:273, resizewindow"
 
 			"SUPER, S, exec, grim -g \"$(slurp)\" - | swappy -f -"
 		];
