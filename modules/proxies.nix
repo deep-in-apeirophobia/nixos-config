@@ -5,6 +5,6 @@
     serviceMode = true;
     tunMode = true;
     autoStart = false;
-    # package = pkgs.clash-nyanpasu; # Alternative fork
+    package = pkgs.clash-nyanpasu; # Alternative fork
   };
 }
