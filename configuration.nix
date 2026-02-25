@@ -29,23 +29,23 @@
 
 		# Download settings
 		http-connections = 4;        # Reduce parallel connections if unstable
-		max-substitution-jobs = 2;   # Limit concurrent downloads
+		# max-substitution-jobs = 2;   # Limit concurrent downloads
 
 		# Keep failed downloads for resume (if supported)
 		keep-failed = false;
 
-		download-redirect-executable = true;
+		# download-redirect-executable = true;
 
 		fallback = true;             # Build from source if substituter fails
-		max-build-jobs = 4;          # Adjust based on your CPU
+		# max-build-jobs = 4;          # Adjust based on your CPU
 
 		# proxy = "http://your-proxy:port";
 	};
 
 	# Create a wrapper script for nix to use aria2
-	environment.etc."nix/nix.conf".text = ''
-		download-redirect-executable = true
-	'';
+	# environment.etc."nix/nix.conf".text = ''
+	# 	download-redirect-executable = true
+	# '';
 
 	systemd.services.nix-daemon.serviceConfig = {
 		LimitNOFILE = 65536;
