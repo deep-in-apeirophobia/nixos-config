@@ -5,6 +5,7 @@
 		./cpp.nix
 		./go.nix
 		./latex.nix
+		./lua.nix
 		./rust.nix
 		./java.nix
 		./python.nix
