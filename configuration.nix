@@ -1,4 +1,4 @@
-{ nixpkgs, conf, lib, pkgs, hostname, username, ...}: 
+{ nixpkgs, conf, config, lib, pkgs, hostname, username, ...}: 
 {
 	nixpkgs.config.allowUnfree = true;
 
@@ -8,11 +8,11 @@
 		# ./modules/gaming.nix
 	];
 
-	###################
-	# bad conneciton  #
-	###################
-	# Add nix mirrors
 	nix.settings = {
+		###################
+		# bad conneciton  #
+		###################
+		# Add nix mirrors
 		substituters = [
 			"https://cache.nixos.org"
 			"https://nix-community.cachix.org"
@@ -40,13 +40,24 @@
 		# max-build-jobs = 4;          # Adjust based on your CPU
 
 		# proxy = "http://your-proxy:port";
+		###################
+
+		auto-optimise-store = true;
+
+		experimental-features = ["nix-command" "flakes"];
+	};
+	nix.optimise = {
+		automatic = true;
+	};
+	nix.gc = {
+		automatic = true;
+		dates = "weekly";
+		options = "--delete-older-than 15d";
 	};
 
-	# Create a wrapper script for nix to use aria2
-	# environment.etc."nix/nix.conf".text = ''
-	# 	download-redirect-executable = true
-	# '';
-
+	###################
+	# bad conneciton  #
+	###################
 	systemd.services.nix-daemon.serviceConfig = {
 		LimitNOFILE = 65536;
 		TimeoutStartSec = "infinity";
@@ -58,6 +69,22 @@
 	boot.loader.efi.canTouchEfiVariables = true;
 	boot.plymouth.enable = true;
 
+	# ZFS config
+	# boot.kernelPackages = latestKernelPackage;
+	boot.supportedFilesystems = [ "zfs" ];
+	boot.zfs.devNodes = "/dev/disk/by-partuuid";
+	boot.zfs.forceImportRoot = false;
+	boot.zfs.extraPools = [ "zpool" ];
+	# fileSystems."/".options = [ "zfsutil" ];
+	fileSystems."/".neededForBoot = true;
+	# fileSystems."/nix".options = [ "zfsutil" ];
+	fileSystems."/nix".neededForBoot = true;
+	# fileSystems."/home".options = [ "zfsutil" ];
+	# fileSystems."/var".options = [ "zfsutil" ];
+
+	services.zfs.autoScrub.enable = true;
+	services.zfs.trim.enable = true;
+
 	services.xserver.videoDrivers = [ "nvidia" ];
 	hardware.nvidia.powerManagement.enable = true;
 	hardware.nvidia.open = true;
@@ -65,6 +92,7 @@
 	hardware.graphics.enable = true;
 
 	networking.networkmanager.enable = true;
+	networking.hostId = "1592fec2";
 	networking.hostName = hostname;
 
 	services.pipewire = {
@@ -121,7 +149,6 @@
 	};
 
 	nixpkgs.config.chromium.commandLineArgs = "--enable-features=UseOzonePlatform --ozone-platform=wayland";
-	nix.settings.experimental-features = ["nix-command" "flakes"];
 
 	programs.firefox = {
     enable = true;
@@ -191,16 +218,30 @@
 	
 	services.tor = {
 		enable = true;
+		openFirewall = true;
+		# relay = {
+		# 	enable = true;
+		# 	role = "relay";
+		# };
+		client.enable = true;
 		settings = {
+			SocksPort = 9050;
+			ControlPort = 9051;
+
 			# UseBridges = true;
 			# ClientTransportPlugin = "obfs4 exec ${pkgs.obfs4}/bin/lyrebird";
 			# Bridge = "obfs4 IP:ORPort [fingerprint]";
+
+			# ContactInfo = "whoknows";
+			# Nickname = "idk";
+			# ORPort = 9001;
+			# BandWidthRate = "1 MBytes";
 		};
 	};
 
 
 	# Maybe change?
-	networking.firewall.enable = false;
+	networking.firewall.enable = true;
 
 	system.stateVersion = "25.11";
 }
