@@ -18,6 +18,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+		nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
+
 		nvim-config = {
 			url = "github:deep-in-apeirophobia/Nvim-Config";
 			flake = false;
@@ -27,24 +29,24 @@
 			url = "github:deep-in-apeirophobia/tmux-config";
 			flake = false;
 		};
-
 	};
 	outputs = {self, nixpkgs, home-manager, ...}@inputs :
 		let
 			mkNixosConfig = { hostname, username, system ? "x86_64-linux", }:
 				nixpkgs.lib.nixosSystem {
 					inherit system;
-					specialArgs = { inherit inputs hostname username; };
+					specialArgs = { inherit inputs hostname username system; };
 					modules = [
 						./configuration.nix
 						./hosts/${hostname}.nix
 						# ./modules/nixos/common.nix
 						home-manager.nixosModules.home-manager
 						{
+							environment.systemPackages = [ nixpkgs.home-managerhome-manager ];
 							home-manager.useGlobalPkgs = true;
 							home-manager.useUserPackages = true;
 							home-manager.users.${username} = import ./home/${username}.nix;
-							home-manager.extraSpecialArgs = { inherit inputs hostname username; };
+							home-manager.extraSpecialArgs = { inherit inputs hostname username system; };
 						}
 					];
 				};

@@ -1,11 +1,18 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, system, ... }:
+let
+	doom-emacs = inputs.nix-doom-emacs.packages.${system}.default.override {
+		# doomPrivateDir = ./doom.d;
+	};
+in
 {
 	home.packages = with pkgs; [
-		emacs
-		emacsPackages.doom
+		# emacs
+		# emacsPackages.doom
+		doom-emacs
 		ripgrep
 		fd
 	];
+
 
 	home.file.".doom.d/init.el".text = ''
 ;; -*- lexical-binding: t; -*-
