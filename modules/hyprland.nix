@@ -17,6 +17,61 @@
 
 	wayland.windowManager.hyprland.settings = {
 		"$mod" = "SUPER";
+		input = {
+			kb_layout = "us,ir";
+			kb_varaint = ",qwerty";
+			repeat_delay = 300;
+
+			# mouse_refocuse = false;
+			float_switch_override_focus = false;
+
+			touchpad = {
+				natural_scroll = true;
+			};
+		};
+
+		general = {
+			layout = "scrolling";
+
+			gaps_in = 4;
+			gaps_out = 8;
+			border_size = 2;
+
+			
+      "col.active_border" = "rgb(2bdfba) rgb(2bdfba) 45deg";
+      "col.inactive_border" = "0x00000000";
+		};
+
+		misc = {
+			# focus_on_active_window = true;
+		};
+
+		decoration = {
+			rounding = 4;
+			
+      blur = {
+        enabled = true;
+
+        size = 3;
+        noise = 0;
+        passes = 2;
+        contrast = 1.4;
+        brightness = 1;
+
+        xray = true;
+      };
+
+      shadow = {
+        enabled = true;
+
+        range = 20;
+        render_power = 3;
+
+        offset = "0 2";
+        color = "rgba(00000055)";
+      };
+		};
+
 		bind = [
 			"$mod, SPACE, exec, wofi --show drun"
 
@@ -46,8 +101,8 @@
 			"$mod, Q, killactive,"
 			"$mod, F, fullscreen,"
 
-			"$mod, mouse:272, movewindow"
-			"$mod, mouse:273, resizewindow"
+			"$mod, mouse:272, moveactive"
+			"$mod, mouse:273, resizeactive"
 
 			"SUPER, S, exec, grim -g \"$(slurp)\" - | swappy -f -"
 		];
