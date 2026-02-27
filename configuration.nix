@@ -9,7 +9,7 @@
 		# ./modules/gaming.nix
 
 		./services/tor.nix
-		./services/udisk2.nix
+		./services/udisks2.nix
 	];
 
 	nix.settings = {

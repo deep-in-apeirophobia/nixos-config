@@ -1,6 +1,6 @@
 { nixpkgs, conf, config, lib, pkgs, hostname, username, ...}: 
 {
-	services.udisk2 = {
+	services.udisks2 = {
 		enable = true;
 		mountOnMedia = true;
 	};
