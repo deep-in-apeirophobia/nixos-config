@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 {
 	home.packages = with pkgs; [
-		lua
+		lua5_1
 		luarocks
 	];
 }
