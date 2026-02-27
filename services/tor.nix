@@ -16,8 +16,8 @@
 		# };
 		client.enable = true;
 		settings = {
-			SocksPort = 9050;
-			ControlPort = 9051;
+			# SocksPort = 9050;
+			# ControlPort = 9051;
 
 			# UseBridges = true;
 			# ClientTransportPlugin = "obfs4 exec ${pkgs.obfs4}/bin/lyrebird";

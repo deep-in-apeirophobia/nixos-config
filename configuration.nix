@@ -211,11 +211,13 @@
 		gnumake
 		python3
 		nodejs
+
+		home-manager
 	];
 	
 
 	# Maybe change?
-	networking.firewall.enable = true;
+	networking.firewall.enable = false;
 
 	system.stateVersion = "25.11";
 }

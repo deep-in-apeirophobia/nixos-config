@@ -42,7 +42,6 @@
 						# ./modules/nixos/common.nix
 						home-manager.nixosModules.home-manager
 						{
-							environment.systemPackages = [ nixpkgs.home-managerhome-manager ];
 							home-manager.useGlobalPkgs = true;
 							home-manager.useUserPackages = true;
 							home-manager.users.${username} = import ./home/${username}.nix;
