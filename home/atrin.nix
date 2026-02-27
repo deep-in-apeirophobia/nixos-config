@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 {
   # Shared across all hosts
-  home.stateVersion = "24.11";
+  home.stateVersion = "25.11";
   
   imports = [
     ../modules/shell.nix
