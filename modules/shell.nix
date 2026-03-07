@@ -14,7 +14,15 @@
 			fish_vi_key_bindings
 			set -g fish_greeting
 			starship init fish | source
+			direnv hook fish | source
 		'';
+	};
+
+	programs.kitty = {
+		enable = true;
+		settings = {
+			shell = "${pkgs.fish}/bin/fish";
+		};
 	};
 
 	home.file.".config/starship.toml".text = ''

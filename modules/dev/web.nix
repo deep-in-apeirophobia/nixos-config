@@ -1,10 +1,14 @@
 { config, pkgs, ... }:
 {
 	home.packages = with pkgs; [
+		# nodejs
 		nodejs_22
 		bun
-		yarn
-		pnpm
+		# corepack       # Enables pnpm/yarn via 'corepack enable'
+		corepack_22       # Enables pnpm/yarn via 'corepack enable'
+		# (pkgs.corepack.overrideAttrs (_: { doCheck = false; }))
+		# yarn
+		# pnpm
 		typescript
 		nodePackages.typescript-language-server
 		nodePackages.vscode-langservers-extracted

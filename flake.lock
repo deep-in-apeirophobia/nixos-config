@@ -396,17 +396,14 @@
     "nvim-config": {
       "flake": false,
       "locked": {
-        "lastModified": 1771470943,
-        "narHash": "sha256-Fb/DS9RVzQcphkeSyhlGHk6kNJcrTf0TFw3TvKPpwfU=",
-        "owner": "deep-in-apeirophobia",
-        "repo": "Nvim-Config",
-        "rev": "976682595eeac49af4472abce9f9a7bec80efb8f",
-        "type": "github"
+        "lastModified": 1772893506,
+        "narHash": "sha256-PjlViKxdBRu+/ulQno8WWLku+bdSVkm2H8S9ccckIqE=",
+        "path": "/home/atrin/dotfiles/Nvim-Config",
+        "type": "path"
       },
       "original": {
-        "owner": "deep-in-apeirophobia",
-        "repo": "Nvim-Config",
-        "type": "github"
+        "path": "/home/atrin/dotfiles/Nvim-Config",
+        "type": "path"
       }
     },
     "ob-racket": {

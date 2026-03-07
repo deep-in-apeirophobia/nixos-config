@@ -10,5 +10,6 @@
 		# nixpkgs.llama.cpp
 
 		# nodePackages.opencode-ai
+		pkgs.opencode
 	];
 }

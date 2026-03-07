@@ -1,13 +1,8 @@
 { config, pkgs, ... }:
 {
 	home.packages = with pkgs; [
-		# rustup
-		rust-analyzer
-		cargo-edit
-		cargo-watch
-		cargo-expand
-		cargo-audit
-		cargo-tarpaulin
+		rustup
+		# rust-analyzer
 	];
 
 	home.sessionVariables = {

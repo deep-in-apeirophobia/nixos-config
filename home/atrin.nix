@@ -6,7 +6,10 @@
   imports = [
     ../modules/shell.nix
     ../modules/git.nix
-    ../modules/hyprland.nix
+
+    ../modules/hypr/hyprland.nix
+    ../modules/hypr/hypridle.nix
+
     ../modules/doom-emacs.nix
     ../modules/neovim.nix
     ../modules/tmux.nix
@@ -14,6 +17,7 @@
     ../modules/libreoffice.nix
     ../modules/utils.nix
     ../modules/browsers.nix
+		../modules/proxies.nix
 
     ../modules/media/common.nix
 

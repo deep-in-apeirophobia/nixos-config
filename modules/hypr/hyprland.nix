@@ -19,7 +19,7 @@
 		"$mod" = "SUPER";
 		input = {
 			kb_layout = "us,ir";
-			kb_varaint = ",qwerty";
+			# kb_varaint = ",qwerty";
 			repeat_delay = 300;
 
 			# mouse_refocuse = false;
@@ -75,10 +75,32 @@
 		bind = [
 			"$mod, SPACE, exec, wofi --show drun"
 
+			"$mod, left, movefocus, l"
+			"$mod, down, movefocus, d"
+			"$mod, up, movefocus, u"
+			"$mod, right, movefocus, r"
 			"$mod, h, movefocus, l"
 			"$mod, j, movefocus, d"
 			"$mod, k, movefocus, u"
 			"$mod, l, movefocus, r"
+
+			"$mod, left, alterzorder, top"
+			"$mod, down, alterzorder, top"
+			"$mod, up, alterzorder, top"
+			"$mod, right, alterzorder, top"
+			"$mod, h, alterzorder, top"
+			"$mod, j, alterzorder, top"
+			"$mod, k, alterzorder, top"
+			"$mod, l, alterzorder, top"
+
+			"$mod SHIFT, left, movewindow, l"
+      "$mod SHIFT, right, movewindow, r"
+      "$mod SHIFT, up, movewindow, u"
+      "$mod SHIFT, down, movewindow, d"
+      "$mod SHIFT, h, movewindow, l"
+      "$mod SHIFT, j, movewindow, d"
+      "$mod SHIFT, k, movewindow, u"
+      "$mod SHIFT, l, movewindow, r"
 
 			(builtins.concatLists (builtins.genList (x: 
 				let 
@@ -101,10 +123,39 @@
 			"$mod, Q, killactive,"
 			"$mod, F, fullscreen,"
 
-			"$mod, mouse:272, moveactive"
-			"$mod, mouse:273, resizeactive"
+			"$mod CTRL SHIFT, S, exec, grim -g \"$(slurp)\" - | swappy -f -"
 
-			"SUPER, S, exec, grim -g \"$(slurp)\" - | swappy -f -"
+      "$mod, mouse_down, workspace, e-1"
+      "$mod, mouse_up, workspace, e+1"
+
+			# Brightness control
+			", XF86MonBrightnessUp, exec, brightnessctl s +5%"
+			", XF86MonBrightnessDown, exec, brightnessctl s 5%-"
+
+			# Volume control (using wpctl for PipeWire)
+			", XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+"
+			", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+
+		];
+		bindel = [
+			## Media controls
+			", XF86AudioPlay, exec, playerctl play-pause"
+			", XF86AudioPrev, exec, playerctl previous"
+			", XF86AudioNext, exec, playerctl next"
+
+			# Mute toggle
+			", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+		];
+
+		bindm = [
+			"$mod, mouse:273, resizewindow"
+			"$mod, mouse:272, movewindow"
+		];
+
+
+		gestures = [
+			"3, left, workspace, m+1"  # Next workspace
+			"3, right, workspace, m-1"  # Previous workspace
 		];
 	};
 }

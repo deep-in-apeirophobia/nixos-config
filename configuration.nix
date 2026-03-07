@@ -47,6 +47,7 @@
 		###################
 
 		auto-optimise-store = true;
+		eval-cache = true; # for direnv
 
 		experimental-features = ["nix-command" "flakes"];
 	};
@@ -99,11 +100,15 @@
 	networking.hostId = "1592fec2";
 	networking.hostName = hostname;
 
+	services.pulseaudio.enable = false;
+	security.rtkit.enable = true;
 	services.pipewire = {
 		enable = true;
 		alsa.enable = true;
+		alsa.support32Bit = true;
 		pulse.enable = true;
 		wireplumber.enable = true;
+		jack.enable = true;
 	};
 
 	services.upower.enable = true;
@@ -131,9 +136,17 @@
 		nerd-fonts.fantasque-sans-mono
 	];
 
+	programs.fish = {
+		enable = true;
+		interactiveShellInit = ''
+			fish_vi_key_bindings
+			'';
+	};
 	users.users.${username} = {
 		isNormalUser = true;
 		extraGroups = [ "wheel" "docker" "wireshark" "libvirtd" "kvm" ];
+
+		shell = pkgs.fish;
 
 	};
 
@@ -210,11 +223,31 @@
 		gcc
 		gnumake
 		python3
-		nodejs
+		nodejs_22
 
 		home-manager
+
+		# FS
+		ntfs3g          # FUSE driver with full read/write support
+    ntfsprogs       # Additional NTFS utilities (mkntfs, ntfsfix, etc.)
+    # HFS+ tools  
+    hfsprogs        # HFS+ filesystem utilities (mkfs.hfsplus, fsck.hfsplus)
+    # APFS tools
+    apfs-fuse
 	];
 	
+	programs.direnv = {
+		enable = true;
+		enableBashIntegration = true; # Needed if you use Bash
+		enableZshIntegration = true;  # Needed if you use Zsh
+		nix-direnv.enable = true;
+	};
+
+	# nekoray/throne
+	programs.throne = {
+		enable = true;
+		tunMode.enable = true;
+	};
 
 	# Maybe change?
 	networking.firewall.enable = false;

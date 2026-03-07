@@ -21,6 +21,12 @@
 		btop
 		htop
 
+		# sound, display, settings
+		wireplumber
+		brightnessctl
+		playerctl
+		pavucontrol
+
 		# File manager + archive tools
 		kdePackages.dolphin
 		kdePackages.ark

@@ -21,7 +21,8 @@
 		nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
 
 		nvim-config = {
-			url = "github:deep-in-apeirophobia/Nvim-Config";
+			# url = "github:deep-in-apeirophobia/Nvim-Config";
+			url = "path:/home/atrin/dotfiles/Nvim-Config";
 			flake = false;
 		};
 
@@ -52,8 +53,11 @@
 			mkHomeConfig = { hostname, username, system ? "x86_64-linux", }:
 				home-manager.lib.homeManagerConfiguration{
 					pkgs = nixpkgs.legacyPackages.${system};
-					extraSpecialArgs = { inherit inputs hostname username; };
+					extraSpecialArgs = { inherit inputs hostname username system; };
 					modules = [
+					{
+						nixpkgs.config.allowUnfree = true;
+					}
 						# ./home/global.nix
 						./home/${username}.nix
 					];
