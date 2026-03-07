@@ -52,12 +52,13 @@
 		experimental-features = ["nix-command" "flakes"];
 	};
 	nix.optimise = {
-		automatic = true;
+		# automatic = true;
+		automatic = false;
 	};
 	nix.gc = {
 		automatic = true;
 		dates = "weekly";
-		options = "--delete-older-than 15d";
+		options = "--delete-older-than 30d";
 	};
 
 	###################
@@ -124,6 +125,7 @@
 	programs.hyprland.enable = true;
 
 	fonts.packages = with pkgs; [
+		vazir-fonts # persian
 		noto-fonts
 		noto-fonts-cjk-sans
 		noto-fonts-color-emoji

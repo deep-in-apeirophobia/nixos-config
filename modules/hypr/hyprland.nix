@@ -19,6 +19,7 @@
 		"$mod" = "SUPER";
 		input = {
 			kb_layout = "us,ir";
+			kb_options = "grp:alt_shift_toggle";
 			# kb_varaint = ",qwerty";
 			repeat_delay = 300;
 
@@ -30,8 +31,15 @@
 			};
 		};
 
+		exec-once = [
+			"waybar"
+			"hypridle"
+			"hyprpaper"          # or swww for wallpapers
+			"dunst"              # notifications
+		];
+
 		general = {
-			layout = "scrolling";
+			layout = "dwindle";
 
 			gaps_in = 4;
 			gaps_out = 8;
@@ -40,6 +48,10 @@
 			
       "col.active_border" = "rgb(2bdfba) rgb(2bdfba) 45deg";
       "col.inactive_border" = "0x00000000";
+		};
+		dwindle = {
+			pseudotile = true;
+			preserve_split = true;
 		};
 
 		misc = {
@@ -72,9 +84,18 @@
       };
 		};
 
-		bind = [
-			"$mod, SPACE, exec, wofi --show drun"
+		"plugin:hyprscrolling" = {
+			column_width = 0.5;
+			fullscreen_on_one_column = true;
+		};
 
+		bind = [
+			# Applications
+			"$mod, SPACE, exec, wofi --show drun"
+			"$mod, Return, exec, kitty"
+			"$mod, E, exec, dolphin"
+
+			# Movement
 			"$mod, left, movefocus, l"
 			"$mod, down, movefocus, d"
 			"$mod, up, movefocus, u"
@@ -102,6 +123,7 @@
       "$mod SHIFT, k, movewindow, u"
       "$mod SHIFT, l, movewindow, r"
 
+			# Workspace
 			(builtins.concatLists (builtins.genList (x: 
 				let 
 					ws = builtins.toString (x + 1);
@@ -114,14 +136,21 @@
 			) 10))
 			"$mod, S, togglespecialworkspace, scratchpad"
 			"$mod SHIFT, S, movetoworkspace, special:scratchpad"
+			"$mod, F1, exec, hyprctl keyword general:layout dwindle"
+			"$mod, F2, exec, hyprctl keyword general:layout master"
+			"$mod, F3, exec, hyprctl keyword general:layout scrolling"
 
 			"$mod, Tab, workspace, m+1"  # Next workspace
 			"$mod SHIFT, Tab, workspace, m-1"  # Previous workspace
 
+			"$mod, P, pseudo"
 			"$mod, backslash, togglefloating,"
-			"$mod, Return, exec, kitty"
+
 			"$mod, Q, killactive,"
 			"$mod, F, fullscreen,"
+
+			# Switch wallpapers
+			"$mod SHIFT, W, exec, ~/.local/bin/hypr-wallpaper"
 
 			"$mod CTRL SHIFT, S, exec, grim -g \"$(slurp)\" - | swappy -f -"
 
@@ -135,6 +164,9 @@
 			# Volume control (using wpctl for PipeWire)
 			", XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+"
 			", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+
+			# Keyboard
+			# "$mod ALT k, exec, hyprctl switchxkblayout all next"
 
 		];
 		bindel = [

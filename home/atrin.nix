@@ -9,6 +9,8 @@
 
     ../modules/hypr/hyprland.nix
     ../modules/hypr/hypridle.nix
+    ../modules/hypr/hyprpaper.nix
+    ../modules/hypr/waybar.nix
 
     ../modules/doom-emacs.nix
     ../modules/neovim.nix
