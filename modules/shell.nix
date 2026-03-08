@@ -2,6 +2,7 @@
 {
 	home.packages = with pkgs; [
 		oh-my-fish
+		kitty-themes
 	];
 
 	programs.fish = {
@@ -22,6 +23,10 @@
 		enable = true;
 		settings = {
 			shell = "${pkgs.fish}/bin/fish";
+		};
+		themeFile = "Catppuccin-Mocha";
+		font = {
+			name = "Mononoki Nerd Font";
 		};
 	};
 
