@@ -31,6 +31,19 @@
 			};
 		};
 
+		monitor = [
+			# name, resolution, position, scale
+			# "eDP-1, 3840x2160@60, 0x0, 2"
+			# 	"HDMI-A-1, 2560x1440@144, 0x0, 1.5"
+			# Fallback for any other monitor
+			# ", preferred, auto, 1.50"
+		];
+
+		# Recommended for fractional scaling
+		xwayland = {
+			force_zero_scaling = true;
+		};
+
 		exec-once = [
 			"waybar"
 			"hypridle"
@@ -72,6 +85,9 @@
 
         xray = true;
       };
+
+			active_opacity   = 1.0;
+			inactive_opacity = 0.85;
 
       shadow = {
         enabled = true;
