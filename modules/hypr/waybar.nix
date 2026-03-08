@@ -182,6 +182,9 @@ window#waybar:hover {
 
 #workspaces{
     background-color: transparent;
+    padding: 0 10px;
+    margin-top: 4px;
+    margin-bottom: 4px;
     margin-right: 10px;
     margin-left: 25px;
 }
