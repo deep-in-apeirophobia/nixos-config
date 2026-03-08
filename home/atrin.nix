@@ -11,6 +11,7 @@
     ../modules/hypr/hypridle.nix
     ../modules/hypr/hyprpaper.nix
     ../modules/hypr/waybar.nix
+    # ../modules/hypr/theme.nix
 
     ../modules/doom-emacs.nix
     ../modules/neovim.nix
@@ -30,9 +31,6 @@
 
 	programs.kitty = {
 		enable = true;
-		font = {
-			name = "Mononoki Nerd Font";
-		};
 	};
 
 	wayland.windowManager.hyprland.enable = true;

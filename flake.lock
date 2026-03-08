@@ -396,8 +396,8 @@
     "nvim-config": {
       "flake": false,
       "locked": {
-        "lastModified": 1772893506,
-        "narHash": "sha256-PjlViKxdBRu+/ulQno8WWLku+bdSVkm2H8S9ccckIqE=",
+        "lastModified": 1772925515,
+        "narHash": "sha256-djuFSPvYgsf+PMp53sI1ja7HbA5+bMKD97iQKcLOmCY=",
         "path": "/home/atrin/dotfiles/Nvim-Config",
         "type": "path"
       },
