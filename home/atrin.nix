@@ -25,6 +25,8 @@
     ../modules/media/common.nix
 
     ../modules/dev/default.nix
+
+		../modules/gaming.nix
   ];
   
   programs.home-manager.enable = true;
