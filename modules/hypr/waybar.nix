@@ -32,7 +32,8 @@
 						"1" = "";
 						"2" = "";
 						"3" = "";
-						"7" = "󰐊";
+						"6" = "󰐊";
+						"7" = "";
 					};
 				};
 
@@ -334,7 +335,7 @@ window#waybar:hover {
     background-color: #2f4858;
     color:#c7fcec;
     font-weight: bolder;
-    font-size: 20px;
+    font-size: 15px;
     padding-left: 15px;
     padding-right: 15px;
 }

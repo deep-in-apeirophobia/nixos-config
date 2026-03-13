@@ -36,7 +36,7 @@
 			# "eDP-1, 3840x2160@60, 0x0, 2"
 			# 	"HDMI-A-1, 2560x1440@144, 0x0, 1.5"
 			# Fallback for any other monitor
-			# ", preferred, auto, 1.50"
+			", preferred, auto, 1.33"
 		];
 
 		# Recommended for fractional scaling
