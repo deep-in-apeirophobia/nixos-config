@@ -71,8 +71,15 @@
 	###################
 
 	# boot.loader.grub.enable = true;
+	# boot.loader.grub.useOSProber = true;
 	boot.loader.systemd-boot.enable = true;
 	boot.loader.efi.canTouchEfiVariables = true;
+	# boot.loader.systemd-boot.edk2-uefi-shell.enable = true;	
+	boot.loader.systemd-boot.windows = {
+		"Windows" = {
+			efiDeviceHandle = "HD0b";
+		};
+	};
 	boot.plymouth.enable = true;
 
 	# ZFS config
@@ -96,6 +103,15 @@
 	hardware.nvidia.open = true;
 	# hardware.opengl.enable = true;
 	hardware.graphics.enable = true;
+	hardware.opengl = {
+		enable = true;
+	};
+	# programs.steam = {
+	# 	enable = true;
+	# 	remotePlay.openFirewall = true;
+	# 	dedicatedServer.openFirewall = true;
+	# };
+
 
 	networking.networkmanager.enable = true;
 	networking.hostId = "1592fec2";
@@ -197,6 +213,7 @@
 
 		wget
 		curl
+		openssl
 
 		git
 
