@@ -23,6 +23,7 @@
 		kubectl
 		# helm
 		doctl
+		ansible
 
 		(wrapHelm kubernetes-helm {
         plugins = with pkgs.kubernetes-helmPlugins; [
