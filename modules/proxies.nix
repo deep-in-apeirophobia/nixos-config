@@ -9,5 +9,6 @@
  #  };
 	home.packages = with pkgs; [
 		throne
+		v2rayn
 	];
 }

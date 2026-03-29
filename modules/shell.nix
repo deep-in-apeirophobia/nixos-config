@@ -38,10 +38,10 @@ format = "$all"
 success_symbol = "❯"
 error_symbol = "✖"
 
-[command_duration]
-min_time = 200
-show_milliseconds = true
-format = "took [$duration]($style) "
+# [command_duration]
+# min_time = 200
+# show_milliseconds = true
+# format = "took [$duration]($style) "
 
 [time]
 disabled = false
