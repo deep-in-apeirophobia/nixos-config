@@ -184,6 +184,10 @@
 			# Keyboard
 			# "$mod ALT k, exec, hyprctl switchxkblayout all next"
 
+			# Clipboard
+      "$mod, C, exec, wl-copy"
+      "$mod, V, exec, wl-paste"
+
 		];
 		bindel = [
 			## Media controls
