@@ -17,6 +17,7 @@
 		nodePackages.tailwindcss
 		# nodePackages."@slidev/cli"
 		# nodePackages.opencode-ai
+		bruno
 	];
 
 	home.sessionVariables = {
