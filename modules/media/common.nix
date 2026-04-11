@@ -3,6 +3,8 @@
 	home.packages = with pkgs; [
 		audacity
 		musescore
+		mpv
+		# gimp
 		# muse-sounds-manager
 	];
 
