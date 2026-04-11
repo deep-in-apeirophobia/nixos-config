@@ -1,5 +1,7 @@
 { config, pkgs, ... }:
 {
+	services.kdeconnect.enable = true;
+
 	home.packages = with pkgs; [
 		# Common utilities
 		curl
