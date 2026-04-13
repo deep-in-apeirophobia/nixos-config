@@ -112,10 +112,20 @@
 	# 	dedicatedServer.openFirewall = true;
 	# };
 
-
-	networking.networkmanager.enable = true;
 	networking.hostId = "1592fec2";
 	networking.hostName = hostname;
+
+	networking.networkmanager = {
+		enable = true;
+		plugins = [
+			pkgs.networkmanager-l2tp
+			pkgs.networkmanager-openvpn
+			pkgs.networkmanager-openconnect
+
+			pkgs.networkmanager-strongswan
+		];
+	};
+  services.xl2tpd.enable = true;
 
 	services.pulseaudio.enable = false;
 	security.rtkit.enable = true;
@@ -253,6 +263,10 @@
     hfsprogs        # HFS+ filesystem utilities (mkfs.hfsplus, fsck.hfsplus)
     # APFS tools
     apfs-fuse
+
+		networkmanagerapplet
+		# L2TP/PPP
+		ppp
 	];
 	
 	programs.direnv = {
@@ -270,6 +284,10 @@
 
 	# Maybe change?
 	networking.firewall.enable = false;
+	# networking.firewall = rec {
+	# 	allowedTCPPortRanges = [ { from = 1714; to = 1764; } ];
+	# 	allowedUDPPortRanges = allowedTCPPortRanges;
+	# };
 
 	system.stateVersion = "25.11";
 }
