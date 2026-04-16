@@ -163,10 +163,16 @@
 			"$mod, backslash, togglefloating,"
 
 			"$mod, Q, killactive,"
-			"$mod, F, fullscreen,"
+			"$mod, F, fullscreen, 1"
+			"$mod SHIFT, F, fullscreen,"
 
-			# Switch wallpapers
-			"$mod SHIFT, W, exec, ~/.local/bin/hypr-wallpaper"
+			# Color picker
+			"$mod ALT, C, exec, hyprpicker -a"
+			"$mod SHIFT ALT, C, exec, hyprpicker -a --format=rgb"
+
+			# Switch wallpapers using wofi picker
+			"$mod SHIFT, W, exec, ~/.local/bin/hypr-wallpaper-wofi"
+			"$mod ALT, W, exec, ~/.local/bin/hypr-wallpaper"
 
 			"$mod CTRL SHIFT, S, exec, grim -g \"$(slurp)\" - | swappy -f -"
 
@@ -187,6 +193,9 @@
 			# Clipboard
       "$mod, C, exec, wl-copy"
       "$mod, V, exec, wl-paste"
+
+			# Lock screen
+			"$mod SHIFT, Escape, exec, hyprlock"
 
 		];
 		bindel = [
