@@ -4,6 +4,7 @@
 		audacity
 		musescore
 		mpv
+		ffmpeg
 		# gimp
 		# muse-sounds-manager
 	];
