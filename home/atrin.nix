@@ -9,9 +9,12 @@
 
     ../modules/hypr/hyprland.nix
     ../modules/hypr/hypridle.nix
+    ../modules/hypr/hyprlock.nix
     ../modules/hypr/hyprpaper.nix
+    # ../modules/hypr/hyprpwcenter.nix
     ../modules/hypr/waybar.nix
-    # ../modules/hypr/theme.nix
+    ../modules/hypr/theme.nix
+    ../modules/hypr/wofi-wallpaper.nix
 
     ../modules/doom-emacs.nix
     ../modules/neovim.nix
