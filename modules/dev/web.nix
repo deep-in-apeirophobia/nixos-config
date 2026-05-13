@@ -10,11 +10,11 @@
 		# yarn
 		# pnpm
 		typescript
-		nodePackages.typescript-language-server
-		nodePackages.vscode-langservers-extracted
-		nodePackages.prettier
-		nodePackages.eslint
-		nodePackages.tailwindcss
+		typescript-language-server
+		vscode-langservers-extracted
+		prettier
+		eslint
+		tailwindcss
 		# nodePackages."@slidev/cli"
 		# nodePackages.opencode-ai
 		bruno
