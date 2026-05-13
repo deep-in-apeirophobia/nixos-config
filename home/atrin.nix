@@ -13,7 +13,7 @@
     ../modules/hypr/hyprpaper.nix
     # ../modules/hypr/hyprpwcenter.nix
     ../modules/hypr/waybar.nix
-    ../modules/hypr/theme.nix
+    # ../modules/hypr/theme.nix
     ../modules/hypr/wofi-wallpaper.nix
 
     ../modules/doom-emacs.nix
