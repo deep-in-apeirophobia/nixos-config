@@ -30,6 +30,11 @@
 			url = "github:deep-in-apeirophobia/tmux-config";
 			flake = false;
 		};
+
+		t3code = {
+      url = "github:rodeyseijkens/t3code-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 	};
 	outputs = {self, nixpkgs, home-manager, ...}@inputs :
 		let
@@ -40,6 +45,7 @@
 					modules = [
 						./configuration.nix
 						./hosts/${hostname}.nix
+						inputs.t3code.nixosModules.default
 						# ./modules/nixos/common.nix
 						home-manager.nixosModules.home-manager
 						{
