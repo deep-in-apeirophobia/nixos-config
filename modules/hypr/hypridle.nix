@@ -12,16 +12,17 @@
 			};
 
 			listener = [
-				# {
-				# 	timeout = 180;          # 3 min — lock screen
-				# 	on-timeout = "pidof hyprlock || hyprlock";
-				# }
 				{
-					timeout = 300;          # 6 min — lock screen 1 min after display off
+					timeout = 240;          # 4 min — dim screen
+					on-timeout = "brightnessctl -s set 10";
+					on-resume = "brightnessctl -r";
+				}
+				{
+					timeout = 300;          # 5 min — lock screen 1 min after display off
 					on-timeout = "pidof hyprlock || hyprlock";
 				}
 				{
-					timeout = 360;          # 5 min — turn off displays
+					timeout = 360;          # 6 min — turn off displays
 					on-timeout = "hyprctl dispatch dpms off";
 					on-resume = "hyprctl dispatch dpms on";
 				}
