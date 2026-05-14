@@ -205,11 +205,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1772003810,
-        "narHash": "sha256-FfaHvYDfcWZ+0ZPkWDVywkglmQjBq0DoIqzl7TH2hXc=",
+        "lastModified": 1778054244,
+        "narHash": "sha256-4yvin6Bm8MxAlAr7QCNSDFQz9WCzBltW+lYdGt1vsv4=",
         "owner": "schembriaiden",
         "repo": "helium-browser-nix-flake",
-        "rev": "9001c8ec8bb3a4b9103eca2f2fc707bda1401977",
+        "rev": "b2790d366bbafa7cd01984a8c7eabe73fe10fd41",
         "type": "github"
       },
       "original": {
@@ -225,11 +225,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1772164835,
-        "narHash": "sha256-zRcwrZDeBfYipqv/7K7TqsfPb87LFU6b7JhoNUGSnvQ=",
+        "lastModified": 1778772542,
+        "narHash": "sha256-mVZ6gS7GLy9FMVl/rx2rOICKsQ0Sb/mtlMeDdCUtPyY=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "2a39b0828bbffce0d73769a61e46e780488d098b",
+        "rev": "3d4f5477f03e0de9f80ad0da7784d43cd386697c",
         "type": "github"
       },
       "original": {
@@ -363,11 +363,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1771848320,
-        "narHash": "sha256-0MAd+0mun3K/Ns8JATeHT1sX28faLII5hVLq0L3BdZU=",
+        "lastModified": 1778443072,
+        "narHash": "sha256-zi7/fsqM/kFdNuED//4WOCUtezGtKKqRNORjMvfwjnA=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "2fc6539b481e1d2569f25f8799236694180c0993",
+        "rev": "da5ad661ba4e5ef59ba743f0d112cbc30e474f32",
         "type": "github"
       },
       "original": {
@@ -396,8 +396,8 @@
     "nvim-config": {
       "flake": false,
       "locked": {
-        "lastModified": 1772925515,
-        "narHash": "sha256-djuFSPvYgsf+PMp53sI1ja7HbA5+bMKD97iQKcLOmCY=",
+        "lastModified": 1773185593,
+        "narHash": "sha256-fpgkKNpirmxoPgT0lt9VltzvwcNJIAkH1N8iP69GIXg=",
         "path": "/home/atrin/dotfiles/Nvim-Config",
         "type": "path"
       },
@@ -510,6 +510,7 @@
         "nixos-generators": "nixos-generators",
         "nixpkgs": "nixpkgs_3",
         "nvim-config": "nvim-config",
+        "t3code": "t3code",
         "tmux-config": "tmux-config",
         "zen-browser": "zen-browser"
       }
@@ -573,6 +574,26 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
+        "type": "github"
+      }
+    },
+    "t3code": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1778369040,
+        "narHash": "sha256-C1zkuY4YXMMho0TKhNIElComMXxLM2iN4mcXgrwImAA=",
+        "owner": "rodeyseijkens",
+        "repo": "t3code-nix",
+        "rev": "e5e00a63e78f33c963c0d4c77b581ab179448359",
+        "type": "github"
+      },
+      "original": {
+        "owner": "rodeyseijkens",
+        "repo": "t3code-nix",
         "type": "github"
       }
     },
@@ -649,11 +670,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1771735013,
-        "narHash": "sha256-QAh0iw/AgjcaNvBE5OIZstxVxagLVK0RAuH7EhIL/N8=",
+        "lastModified": 1778303188,
+        "narHash": "sha256-zXFSvK80qpI91B7DU9QSExAtafSrz6vzormh2kUi6kQ=",
         "owner": "youwen5",
         "repo": "zen-browser-flake",
-        "rev": "32b69f03007507fc012be9203efdd414f4bc0d66",
+        "rev": "9346c84657a9cab472bc4ee5a2d65d42a72d5346",
         "type": "github"
       },
       "original": {
