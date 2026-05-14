@@ -12,7 +12,7 @@
 		v2rayn
 		xray
 		wireguard-tools
-		protonvpn-gui
+		proton-vpn
 	];
 
 	xdg.dataFile = {
