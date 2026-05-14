@@ -11,6 +11,7 @@
     ../modules/hypr/hypridle.nix
     ../modules/hypr/hyprlock.nix
     ../modules/hypr/hyprpaper.nix
+    ../modules/hypr/hyprshutdown.nix
     # ../modules/hypr/hyprpwcenter.nix
     ../modules/hypr/waybar.nix
     # ../modules/hypr/theme.nix
