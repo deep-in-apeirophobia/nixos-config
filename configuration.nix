@@ -103,9 +103,9 @@
 	hardware.nvidia.open = true;
 	# hardware.opengl.enable = true;
 	hardware.graphics.enable = true;
-	hardware.opengl = {
-		enable = true;
-	};
+	# hardware.opengl = {
+	# 	enable = true;
+	# };
 	# programs.steam = {
 	# 	enable = true;
 	# 	remotePlay.openFirewall = true;
