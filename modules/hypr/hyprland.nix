@@ -15,6 +15,8 @@
 		};
 	};
 
+	wayland.windowManager.hyprland.configType = "hyprlang";
+	# wayland.windowManager.hyprland.configType = "lua";
 	wayland.windowManager.hyprland.settings = {
 		"$mod" = "SUPER";
 		input = {
@@ -63,7 +65,7 @@
       "col.inactive_border" = "0x00000000";
 		};
 		dwindle = {
-			pseudotile = true;
+			# pseudotile = true;
 			preserve_split = true;
 		};
 
@@ -214,9 +216,22 @@
 		];
 
 
-		gestures = [
-			"3, left, workspace, m+1"  # Next workspace
-			"3, right, workspace, m-1"  # Previous workspace
-		];
+		# gestures = [
+		# 	"3, left, workspace, m+1"  # Next workspace
+		# 	"3, right, workspace, m-1"  # Previous workspace
+		# ];
+		# gestures = {
+		#         workspace_swipe = true;
+		#         workspace_swipe_fingers = 3;
+		#         workspace_swipe_distance = 400;
+		#         workspace_swipe_invert = true;
+		# };
+		#
+		# "gesture" = [
+		#         "3, up, fullscreen"
+		#         # "3, down, killactive"
+		#         "4, left, workspace, e-1"
+		#         "4, right, workspace, e+1"
+		# ];
 	};
 }
