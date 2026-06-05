@@ -73,6 +73,18 @@ let
 
     ${pkgs.tmux}/bin/tmux switch-client -t "$selected"
   '';
+  worktreeSelector = pkgs.writeShellScript "open-worktree.sh" ''
+    selected=$(${pkgs.git}/bin/git worktree list | awk '{print $3":"$1}' | ${pkgs.fzf}/bin/fzf)
+
+    if [[ -z "$selected" ]]; then
+        exit 0
+    fi
+
+    path=$(echo "$selected" | cut -d: -f2)
+    name=$(echo "$selected" | cut -d: -f1)
+
+    ${pkgs.tmux}/bin/tmux new-window -c "$path" -n "$name"
+  '';
 in
 {
 	programs.tmux = {
@@ -109,6 +121,7 @@ in
 
       # Scripts reference Nix store paths directly
       bind-key -T prefix w run-shell "tmux neww -n fzf-selector ${windowSelector}"
+      bind-key -T prefix \\ run-shell "tmux neww -n fzf-selector ${worktreeSelector}"
       bind-key -T prefix g run-shell "tmux neww -n fzf-selector ${sessionizer}"
       bind-key -T prefix C-c run-shell "tmux neww -n fzf-selector ${configSessionizer}"
       bind-key -T prefix a run-shell "tmux neww -n fzf-selector ${activeSessions}"
@@ -131,8 +144,12 @@ in
       yank
 			tmux-powerline
       { plugin = catppuccin; extraConfig = ''
+					set -g @catppuccin_window_default_text " #{window_name} (#{pane_current_command})"
+					set -g @catppuccin_window_text " #{window_name} (#{pane_current_command})"
+					# set -g @catppuccin_window_current_text " #W"
+
           set -g @catppuccin_flavor "mocha"
-          set -g @catppuccin_window_status_style "rounded"
+          # set -g @catppuccin_window_status_style "rounded"
           set -g status-right-length 100
           set -g status-left-length 100
           set -g status-left ""
