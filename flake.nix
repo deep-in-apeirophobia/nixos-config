@@ -8,6 +8,8 @@
 		};
 		nixos-generators.url = "github:nix-community/nixos-generators";
 
+		catppuccin.url = "github:catppuccin/nix";
+
 		helium = {
 			url = "github:schembriaiden/helium-browser-nix-flake";
 			inputs.nixpkgs.follows = "nixpkgs";
@@ -54,6 +56,7 @@
 							home-manager.users.${username} = import ./home/${username}.nix;
 							home-manager.extraSpecialArgs = { inherit inputs hostname username system; };
 						}
+						inputs.catppuccin.nixosModules.catppuccin
 					];
 				};
 			mkHomeConfig = { hostname, username, system ? "x86_64-linux", }:
@@ -66,6 +69,7 @@
 					}
 						# ./home/global.nix
 						./home/${username}.nix
+						inputs.catppuccin.homeModules.catppuccin
 					];
 				};
 
