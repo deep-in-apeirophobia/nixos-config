@@ -19,6 +19,7 @@
 		libffi
 		direnv
 		vscode
+		zed-editor
 		octave
 		kubectl
 		# helm
