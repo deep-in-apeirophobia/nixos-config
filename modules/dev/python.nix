@@ -6,7 +6,7 @@
 		python3Packages.virtualenv
 		python3Packages.debugpy
 		python3Packages.jupyterlab
-		pipx
+		(pipx.overridePythonAttrs (old: { doCheck = false; })) # pipx
 		poetry
 		uv
 		ruff
