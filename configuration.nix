@@ -82,6 +82,11 @@
 	};
 	boot.plymouth.enable = true;
 
+	# Increase max_file watches, otherwise yarn errors
+	boot.kernel.sysctl = {
+		"fs.inotify.max_user_watches" = 524288;
+	};
+
 	# ZFS config
 	# boot.kernelPackages = latestKernelPackage;
 	boot.supportedFilesystems = [ "zfs" ];
