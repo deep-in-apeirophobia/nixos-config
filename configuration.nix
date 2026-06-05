@@ -210,6 +210,18 @@
     enable = true;
   };
 
+	environment.variables = {
+		NPM_CONFIG_PREFIX = "$HOME/.local/share/npm";
+    PNPM_HOME = "$HOME/.local/share/pnpm";
+    CARGO_HOME = "$HOME/.cargo";
+
+		PATH = [
+			"$NPM_CONFIG_PREFIX/bin"
+      "$PNPM_HOME/bin"
+      "$CARGO_HOME/bin"
+		];
+	};
+
 	environment.systemPackages = with pkgs; [
 		# for unstable connections
 		aria2
