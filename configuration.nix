@@ -160,7 +160,8 @@
 	programs.hyprland.enable = true;
 
 	fonts.packages = with pkgs; [
-		vazir-fonts # persian
+		# vazir-fonts # persian
+		vazirmatn # persian
 		noto-fonts
 		noto-fonts-cjk-sans
 		noto-fonts-color-emoji
