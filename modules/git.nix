@@ -11,4 +11,8 @@
 
   };
   programs.delta.enable = true;
+
+	home.packages = with pkgs; [
+		gh
+	];
 }
