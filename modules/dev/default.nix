@@ -3,6 +3,7 @@
 	imports = [
 		./ai.nix
 		./cpp.nix
+		./hardware.nix
 		./go.nix
 		./latex.nix
 		./lua.nix
