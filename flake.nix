@@ -37,6 +37,8 @@
       url = "github:rodeyseijkens/t3code-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+		codex-cli-nix.url = "github:sadjow/codex-cli-nix";
 	};
 	outputs = {self, nixpkgs, home-manager, ...}@inputs :
 		let
