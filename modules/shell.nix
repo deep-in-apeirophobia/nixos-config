@@ -19,6 +19,13 @@
 		'';
 	};
 
+	home.sessionPath = [
+		"$HOME/.local/share/pnpm/bin"
+		"$HOME/.local/share/npm"
+		"$HOME/.local/share/pnpm"
+ 		"$HOME/.cargo"
+	];
+
 	programs.kitty = {
 		enable = true;
 		settings = {
