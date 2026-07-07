@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ inputs, config, pkgs, ... }:
 {
 
 	services.ollama = {
@@ -7,9 +7,11 @@
 	};
 
 	home.packages = [
-		# nixpkgs.llama.cpp
+		# pkgs.llama.cpp
 
 		# nodePackages.opencode-ai
+
+		inputs.codex-cli-nix.packages.${pkgs.system}.default
 		pkgs.opencode
 	];
 }
