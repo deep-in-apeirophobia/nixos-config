@@ -179,7 +179,7 @@
 	};
 	users.users.${username} = {
 		isNormalUser = true;
-		extraGroups = [ "wheel" "docker" "wireshark" "libvirtd" "kvm" ];
+		extraGroups = [ "wheel" "docker" "wireshark" "libvirtd" "kvm" "dialout" ];
 
 		shell = pkgs.fish;
 
@@ -294,6 +294,12 @@
 		enableZshIntegration = true;  # Needed if you use Zsh
 		nix-direnv.enable = true;
 	};
+
+	# Arduino
+	services.udev.packages = with pkgs; [
+		platformio-core.udev
+		openocd
+	];
 
 	# nekoray/throne
 	programs.throne = {
