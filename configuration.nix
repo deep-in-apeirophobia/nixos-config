@@ -10,6 +10,8 @@
 
 		./services/tor.nix
 		./services/udisks2.nix
+
+		./services/tailscale.nix
 	];
 
 	nix.settings = {
@@ -312,6 +314,8 @@
 	# networking.firewall = rec {
 	# 	allowedTCPPortRanges = [ { from = 1714; to = 1764; } ];
 	# 	allowedUDPPortRanges = allowedTCPPortRanges;
+	#   trustedInterfaces = [ config.services.tailscale.interfaceName ];
+  #   allowedUDPPorts = [ config.services.tailscale.port ];
 	# };
 
 	system.stateVersion = "25.11";
