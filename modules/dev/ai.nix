@@ -13,5 +13,6 @@
 
 		inputs.codex-cli-nix.packages.${pkgs.system}.default
 		pkgs.opencode
+		pkgs.claude-code
 	];
 }
