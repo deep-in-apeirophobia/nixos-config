@@ -20,11 +20,15 @@
 	};
 
 	home.sessionPath = [
-		"$HOME/.local/share/pnpm/bin"
-		"$HOME/.local/share/npm"
-		"$HOME/.local/share/pnpm"
- 		"$HOME/.cargo"
+		"${config.home.homeDirectory}/.local/share/pnpm/bin"
+		"${config.home.homeDirectory}/.local/share/npm/bin"
+		"${config.home.homeDirectory}/.cargo/bin"
 	];
+
+	home.sessionVariables = {
+		PNPM_HOME = "${config.home.homeDirectory}/.local/share/pnpm/bin";
+		NPM_CONFIG_PREFIX = "${config.home.homeDirectory}/.local/share/npm";
+	};
 
 	programs.kitty = {
 		enable = true;
