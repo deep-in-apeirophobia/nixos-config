@@ -149,15 +149,38 @@
 
 	services.upower.enable = true;
 
+	# Keep interactive media responsive when builds saturate the machine.
+	services.ananicy = {
+		enable = true;
+		package = pkgs.ananicy-cpp;
+		rulesProvider = pkgs.ananicy-rules-cachyos;
+		extraTypes = [{
+			type = "realtime-media";
+			nice = -10;
+			ioclass = "best-effort";
+			ionice = 0;
+		}];
+		extraRules = map (name: {
+			inherit name;
+			type = "realtime-media";
+		}) [ "vlc" "mpv" "audacity" ];
+	};
+
 	services.printing.enable = true;
 
 	xdg.portal = {
 		enable = true;
 		extraPortals = with pkgs; [
 			xdg-desktop-portal-hyprland
+			xdg-desktop-portal-gtk
 		];
+		config.hyprland = {
+			default = [ "hyprland" "gtk" ];
+			"org.freedesktop.impl.portal.FileChooser" = [ "gtk" ];
+		};
 	};
 	programs.hyprland.enable = true;
+	programs.dconf.enable = true;
 
 	fonts.packages = with pkgs; [
 		# vazir-fonts # persian
@@ -182,7 +205,7 @@
 	};
 	users.users.${username} = {
 		isNormalUser = true;
-		extraGroups = [ "wheel" "docker" "wireshark" "libvirtd" "kvm" "dialout" ];
+		extraGroups = [ "wheel" "docker" "wireshark" "libvirtd" "kvm" "dialout" "video" ];
 
 		shell = pkgs.fish;
 
@@ -214,18 +237,6 @@
 	programs.chromium = {
     enable = true;
   };
-
-	environment.variables = {
-		NPM_CONFIG_PREFIX = "$HOME/.local/share/npm";
-    PNPM_HOME = "$HOME/.local/share/pnpm";
-    CARGO_HOME = "$HOME/.cargo";
-
-		PATH = [
-			"$NPM_CONFIG_PREFIX/bin"
-      "$PNPM_HOME/bin"
-      "$CARGO_HOME/bin"
-		];
-	};
 
 	environment.systemPackages = with pkgs; [
 		# for unstable connections
