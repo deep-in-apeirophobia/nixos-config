@@ -1,5 +1,15 @@
 { config, pkgs, lib, ... }:
 {
+	dconf.settings."org/gnome/desktop/interface" = {
+		color-scheme = "prefer-dark";
+		gtk-theme = "Catppuccin-Mocha-Compact-Mauve-Dark";
+	};
+
+	catppuccin = {
+		flavor = "mocha";
+		accent = "mauve";
+		kvantum.enable = true;
+	};
   # GTK configuration
   gtk = {
     enable = true;
@@ -36,17 +46,17 @@
   # Qt/KDE application theming using qt6ct and qt5ct
   qt = {
     enable = true;
-    platformTheme.name = "gtk2";
+    platformTheme.name = "qtct";
     style = {
-      name = "gtk2";
+			name = "kvantum";
     };
   };
 
-  # Configure qt6ct and qt5ct to use the GTK2 style (which follows your GTK theme)
+	# Configure Qt control panels to use the Catppuccin Kvantum style.
   xdg.configFile."qt6ct/qt6ct.conf".text = ''
     [Appearance]
-    standard_dialogs=gtk2
-    style=gtk2
+		standard_dialogs=xdgdesktopportal
+		style=kvantum
 
     [Fonts]
     fixed=@Variant(\0\0\0[@\0\0\0\x12\0M\0o\0n\0o\0 \0S\0p\0a\0c\0e\0\0\0\n\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x12)
@@ -70,8 +80,8 @@
 
   xdg.configFile."qt5ct/qt5ct.conf".text = ''
     [Appearance]
-    standard_dialogs=gtk2
-    style=gtk2
+		standard_dialogs=xdgdesktopportal
+		style=kvantum
 
     [Fonts]
     fixed="MonoSpace,10,-1,5,50,0,0,0,0,0"
@@ -95,17 +105,10 @@
 
   # Environment variables for Qt applications to use the proper theming
   home.sessionVariables = {
-    QT_QPA_PLATFORMTHEME = lib.mkForce "qt6ct";
+		QT_QPA_PLATFORMTHEME = lib.mkForce "qt6ct";
     QT_QPA_PLATFORM = "wayland";
     QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
     QT_AUTO_SCREEN_SCALE_FACTOR = "1";
-  };
-
-  # XDG portal for proper integration
-  xdg.portal = {
-    enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-    configPackages = [ pkgs.gsettings-desktop-schemas ];
   };
 
   home.packages = with pkgs; [
