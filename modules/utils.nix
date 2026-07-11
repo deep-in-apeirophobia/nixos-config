@@ -35,6 +35,8 @@
 
 		# PDF viewer
 		kdePackages.okular
+		kdePackages.gwenview
+		nwg-displays
 		wine
 
 		# Hyprland essentials
