@@ -55,6 +55,7 @@
 						{
 							home-manager.useGlobalPkgs = true;
 							home-manager.useUserPackages = true;
+							home-manager.sharedModules = [ inputs.catppuccin.homeModules.catppuccin ];
 							home-manager.users.${username} = import ./home/${username}.nix;
 							home-manager.extraSpecialArgs = { inherit inputs hostname username system; };
 						}
