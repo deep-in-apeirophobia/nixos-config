@@ -14,21 +14,21 @@
 			listener = [
 				{
 					timeout = 240;          # 4 min — dim screen
-					on-timeout = "brightnessctl -s set 10";
+					on-timeout = "playerctl -a status 2>/dev/null | grep -q Playing || brightnessctl -s set 10";
 					on-resume = "brightnessctl -r";
 				}
 				{
 					timeout = 300;          # 5 min — lock screen 1 min after display off
-					on-timeout = "pidof hyprlock || hyprlock";
+					on-timeout = "playerctl -a status 2>/dev/null | grep -q Playing || (pidof hyprlock || hyprlock)";
 				}
 				{
 					timeout = 360;          # 6 min — turn off displays
-					on-timeout = "hyprctl dispatch dpms off";
+					on-timeout = "playerctl -a status 2>/dev/null | grep -q Playing || hyprctl dispatch dpms off";
 					on-resume = "hyprctl dispatch dpms on";
 				}
 				{
 					timeout = 1800;         # 30 min — suspend
-					on-timeout = "systemctl suspend";
+					on-timeout = "playerctl -a status 2>/dev/null | grep -q Playing || systemctl suspend";
 				}
 			];
 		};
