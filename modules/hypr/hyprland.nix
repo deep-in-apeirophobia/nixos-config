@@ -112,6 +112,7 @@
 			"$mod, SPACE, exec, wofi --show drun"
 			"$mod, Return, exec, kitty"
 			"$mod, E, exec, dolphin"
+			"$mod SHIFT, M, exec, nwg-displays"
 
 			# Movement
 			"$mod, left, movefocus, l"
