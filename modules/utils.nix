@@ -9,6 +9,7 @@
 		rsync
 		git
 		jq
+		yq
 		ripgrep
 		fd
 		fzf
@@ -59,6 +60,7 @@
 		wofi
 		starship
 		polkit_gnome
+		hyprpolkitagent
 		imagemagick
 	];
 }
