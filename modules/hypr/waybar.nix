@@ -25,7 +25,7 @@
 				];
 
 				"hyprland/workspaces" = {
-					disable-scroll = true;
+					disable-scroll = false;
 					all-outputs = true;
 					format = "{icon}";
 					format-icons = {
