@@ -1,19 +1,19 @@
 { config, pkgs, ... }:
 {
-	systemd.user.services.polkit-gnome = {
-		Unit = {
-			Description = "Polkit GNOME Authentication Agent";
-			After = [ "graphical-session.target" ];
-		};
-		Service = {
-			Type = "simple";
-			ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-			Restart = "on-failure";
-		};
-		Install = {
-			WantedBy = [ "graphical-session.target" ];
-		};
-	};
+	# systemd.user.services.polkit-gnome = {
+	# 	Unit = {
+	# 		Description = "Polkit GNOME Authentication Agent";
+	# 		After = [ "graphical-session.target" ];
+	# 	};
+	# 	Service = {
+	# 		Type = "simple";
+	# 		ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+	# 		Restart = "on-failure";
+	# 	};
+	# 	Install = {
+	# 		WantedBy = [ "graphical-session.target" ];
+	# 	};
+	# };
 
 	wayland.windowManager.hyprland.configType = "hyprlang";
 	# wayland.windowManager.hyprland.configType = "lua";
@@ -47,6 +47,7 @@
 		};
 
 		exec-once = [
+			"systemctl --user start hyprpolkit"
 			"waybar"
 			"hypridle"
 			"hyprpaper"          # or swww for wallpapers
@@ -202,13 +203,21 @@
 
 		];
 		bindel = [
+			# Brightness control
+			", XF86MonBrightnessUp, exec, ${pkgs.brightnessctl}/bin/brightnessctl set +5%"
+			", XF86MonBrightnessDown, exec, ${pkgs.brightnessctl}/bin/brightnessctl set 5%-"
+
+			# Volume control (using wpctl for PipeWire)
+			", XF86AudioRaiseVolume, exec, ${pkgs.wireplumber}/bin/wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+"
+			", XF86AudioLowerVolume, exec, ${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+
 			## Media controls
-			", XF86AudioPlay, exec, playerctl play-pause"
-			", XF86AudioPrev, exec, playerctl previous"
-			", XF86AudioNext, exec, playerctl next"
+			", XF86AudioPlay, exec, ${pkgs.playerctl}/bin/playerctl play-pause"
+			", XF86AudioPrev, exec, ${pkgs.playerctl}/bin/playerctl previous"
+			", XF86AudioNext, exec, ${pkgs.playerctl}/bin/playerctl next"
 
 			# Mute toggle
-			", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+			", XF86AudioMute, exec, ${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
 		];
 
 		bindm = [
