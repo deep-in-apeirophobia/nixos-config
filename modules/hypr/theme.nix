@@ -114,8 +114,6 @@
   home.packages = with pkgs; [
     qt6Packages.qt6ct
     libsForQt5.qt5ct
-    gtk-engine-murrine
-    gtk_engines
     gnome-themes-extra
     papirus-icon-theme
     catppuccin-gtk
