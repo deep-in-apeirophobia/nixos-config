@@ -14,8 +14,8 @@
 			listener = [
 				{
 					timeout = 240;          # 4 min — dim screen
-					on-timeout = "playerctl -a status 2>/dev/null | grep -q Playing || brightnessctl -s set 10";
-					on-resume = "brightnessctl -r";
+					on-timeout = "${pkgs.playerctl}/bin/playerctl -a status 2>/dev/null | grep -q Playing || ${pkgs.brightnessctl}/bin/brightnessctl -s set 10%";
+					on-resume = "${pkgs.brightnessctl}/bin/brightnessctl -r";
 				}
 				{
 					timeout = 300;          # 5 min — lock screen 1 min after display off
