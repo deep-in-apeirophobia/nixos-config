@@ -49,7 +49,13 @@
 					modules = [
 						./configuration.nix
 						./hosts/${hostname}.nix
-						inputs.t3code.nixosModules.default
+						{
+							programs.appimage.enable = true;
+							programs.appimage.binfmt = true;
+							environment.systemPackages = [
+								(inputs.t3code.packages.${system}.default.overrideAttrs (_: { pkgs = null; }))
+							];
+						}
 						# ./modules/nixos/common.nix
 						home-manager.nixosModules.home-manager
 						{
