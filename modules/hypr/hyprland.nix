@@ -183,10 +183,6 @@
       "$mod, mouse_down, workspace, e-1"
       "$mod, mouse_up, workspace, e+1"
 
-			# Brightness control
-			", XF86MonBrightnessUp, exec, brightnessctl s +5%"
-			", XF86MonBrightnessDown, exec, brightnessctl s 5%-"
-
 			# Volume control (using wpctl for PipeWire)
 			", XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+"
 			", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
