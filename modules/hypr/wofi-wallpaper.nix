@@ -1,60 +1,57 @@
 { config, pkgs, ... }:
 let
-  wallpaperPickerScript = pkgs.writeShellScript "hypr-wallpaper-wofi" ''
-    WALLPAPER_DIR="$HOME/wallpapers"
+  wallpaperPicker = pkgs.writeShellApplication {
+    name = "hypr-wallpaper-wofi";
+    runtimeInputs = with pkgs; [ coreutils findutils imagemagick wofi ];
+    text = ''
+      wallpaper_dir="$HOME/wallpapers"
+      thumb_dir="''${XDG_CACHE_HOME:-$HOME/.cache}/hypr-wallpaper-thumbs"
+      mkdir -p "$thumb_dir"
 
-    # Find all wallpapers
-    mapfile -t wallpapers < <(find "$WALLPAPER_DIR" -type f \
-      \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" -o -iname "*.gif" -o -iname "*.webp" \) | sort)
-
-    if [[ ''${#wallpapers[@]} -eq 0 ]]; then
-      echo "No wallpapers found in $WALLPAPER_DIR" >&2
-      exit 1
-    fi
-
-    # Create a temp file with formatted entries
-    TEMP_FILE=$(mktemp)
-    for file in "''${wallpapers[@]}"; do
-      filename=$(basename "$file")
-      # Output format: filename<NULL>icon<RS>/path/to/file<newline>
-      printf "%s\x00icon\x1f%s\n" "$filename" "$file" >> "$TEMP_FILE"
-    done
-
-    # Launch wofi with image support
-    selected=$(cat "$TEMP_FILE" | ${pkgs.wofi}/bin/wofi \
-      --dmenu \
-      --conf /dev/null \
-      --style ~/.config/wofi/wallpaper.css \
-      --prompt "Select wallpaper..." \
-      --insensitive \
-      --show-icons \
-      --allow-images \
-      --cache-file /dev/null \
-      --height 700 \
-      --width 900 \
-      --location center \
-      --columns 3)
-
-    rm -f "$TEMP_FILE"
-
-    if [[ -n "$selected" ]]; then
-      # Find the full path from the filename
-      img=""
-      for file in "''${wallpapers[@]}"; do
-        if [[ "$(basename "$file")" == "$selected" ]]; then
-          img="$file"
-          break
-        fi
-      done
-      
-      if [[ -n "$img" && -f "$img" ]]; then
-        # Set wallpaper using hyprpaper
-        ${pkgs.hyprpaper}/bin/hyprctl hyprpaper preload "$img"
-        ${pkgs.hyprpaper}/bin/hyprctl hyprpaper wallpaper ",$img"
-        ${pkgs.hyprpaper}/bin/hyprctl hyprpaper unload unused
+      mapfile -t wallpapers < <(find -L "$wallpaper_dir" -type f \( \
+        -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' -o -iname '*.webp' \
+      \) | sort)
+      if (( ''${#wallpapers[@]} == 0 )); then
+        echo "No wallpapers found in $wallpaper_dir" >&2
+        exit 1
       fi
-    fi
-  '';
+
+      entries=()
+      for file in "''${wallpapers[@]}"; do
+        # Wofi decodes every image at full size, which takes seconds for a
+        # folder of 4K wallpapers, so it gets small cached thumbnails instead.
+        thumb="$thumb_dir/$(printf '%s' "$file" | sha1sum | cut -d' ' -f1).png"
+        if [[ ! -f $thumb || $file -nt $thumb ]]; then
+          magick "$file" -thumbnail 400x250^ -gravity center -extent 400x250 "$thumb" || continue
+        fi
+        # Wofi's image syntax is img:<image>:text:<label>; without the text:
+        # marker the label is read as part of the image path. --parse-action
+        # makes wofi print just the label back, so the label is the wallpaper
+        # path (the stylesheet hides it, the search box still matches it).
+        entries+=("img:$thumb:text:$file")
+      done
+
+      # Wofi exits non-zero when the picker is dismissed.
+      selected=$(printf '%s\n' "''${entries[@]}" | wofi \
+        --dmenu \
+        --conf /dev/null \
+        --style "''${XDG_CONFIG_HOME:-$HOME/.config}/wofi/wallpaper.css" \
+        --prompt "Select wallpaper..." \
+        --insensitive \
+        --allow-images \
+        --parse-action \
+        --define image_size=250 \
+        --cache-file /dev/null \
+        --height 700 \
+        --width 900 \
+        --location center \
+        --columns 3) || exit 0
+
+      if [[ -n $selected ]]; then
+        exec "$HOME/.local/bin/hypr-wallpaper" "$selected"
+      fi
+    '';
+  };
 in
 {
   # Wofi configuration for wallpaper picker with image preview
@@ -125,5 +122,5 @@ in
     }
   '';
 
-  home.file.".local/bin/hypr-wallpaper-wofi".source = wallpaperPickerScript;
+  home.file.".local/bin/hypr-wallpaper-wofi".source = "${wallpaperPicker}/bin/hypr-wallpaper-wofi";
 }
