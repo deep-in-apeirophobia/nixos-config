@@ -33,12 +33,24 @@
 			flake = false;
 		};
 
-		t3code = {
-      url = "github:rodeyseijkens/t3code-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+		# The newest t3 code nightly is resolved out of this releases listing at
+		# eval time -- upstream ships no rolling nightly tag or URL. Moving to a
+		# newer nightly is `nix flake update t3code-releases`.
+		t3code-releases = {
+			url = "file+https://api.github.com/repos/pingdotgg/t3code/releases";
+			flake = false;
+		};
 
 		codex-cli-nix.url = "github:sadjow/codex-cli-nix";
+
+		# nixpkgs still ships waybar 0.15.0, whose hyprland/workspaces module
+		# sends legacy `dispatch workspace N` and so breaks under Hyprland's Lua
+		# config. Upstream master speaks the Lua dispatch protocol. Drop this
+		# input once nixpkgs has a waybar release newer than 0.15.0.
+		waybar = {
+			url = "github:Alexays/Waybar";
+			inputs.nixpkgs.follows = "nixpkgs";
+		};
 	};
 	outputs = {self, nixpkgs, home-manager, ...}@inputs :
 		let
@@ -49,13 +61,15 @@
 					modules = [
 						./configuration.nix
 						./hosts/${hostname}.nix
-						{
+						({ pkgs, ... }: {
 							programs.appimage.enable = true;
 							programs.appimage.binfmt = true;
 							environment.systemPackages = [
-								(inputs.t3code.packages.${system}.default.overrideAttrs (_: { pkgs = null; }))
+								(pkgs.callPackage ./pkgs/t3code-nightly.nix {
+									releases = inputs.t3code-releases;
+								})
 							];
-						}
+						})
 						# ./modules/nixos/common.nix
 						home-manager.nixosModules.home-manager
 						{
