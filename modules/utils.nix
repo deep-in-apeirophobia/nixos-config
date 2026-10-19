@@ -54,12 +54,10 @@
 		swaybg
 		hyprpaper
 		hypridle
-		waybar
 		dunst
 		swaynotificationcenter
 		wofi
 		starship
-		polkit_gnome
 		hyprpolkitagent
 		imagemagick
 	];

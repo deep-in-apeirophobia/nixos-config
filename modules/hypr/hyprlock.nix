@@ -3,11 +3,11 @@
   programs.hyprlock = {
     enable = true;
     settings = {
+      # hyprlock 0.9 dropped disable_loading_bar, grace and no_fade_in; grace
+      # now defaults to 0 and fade-in is turned off via `--no-fade-in`
+      # (see lock_cmd in hypridle.nix).
       general = {
-        disable_loading_bar = true;
-        grace = 0;
         hide_cursor = true;
-        no_fade_in = false;
       };
 
       background = [

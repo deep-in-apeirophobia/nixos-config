@@ -25,10 +25,6 @@
       name = "Papirus-Dark";
       package = pkgs.papirus-icon-theme;
     };
-    cursorTheme = {
-      name = "Bibata-Modern-Ice";
-      package = pkgs.bibata-cursors;
-    };
     gtk3.extraConfig = {
       Settings = ''
         gtk-application-prefer-dark-theme=1
@@ -41,6 +37,17 @@
         gtk-icon-theme-name=Papirus-Dark
       '';
     };
+  };
+
+  # One cursor theme everywhere: GTK, XWayland apps and Hyprland itself
+  # (hyprland.nix exports it), instead of Hyprland's built-in cursor.
+  home.pointerCursor = {
+    enable = true;
+    name = "Bibata-Modern-Ice";
+    package = pkgs.bibata-cursors;
+    size = 24;
+    gtk.enable = true;
+    x11.enable = true;
   };
 
   # Qt/KDE application theming using qt6ct and qt5ct

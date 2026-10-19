@@ -149,6 +149,19 @@
 
 	services.upower.enable = true;
 
+	# Closing the lid always suspends, even while something holds a sleep
+	# inhibitor (a running T3 Code task only holds off *idle* suspend).
+	# hypridle locks the session before the machine goes down. With an
+	# external monitor attached the lid is left to Hyprland, which just turns
+	# the laptop panel off. Not hibernate: hibernating with a ZFS root is
+	# unsafe (boot.zfs.unsafeAllowHibernation).
+	services.logind.settings.Login = {
+		HandleLidSwitch = "suspend";
+		HandleLidSwitchExternalPower = "suspend";
+		HandleLidSwitchDocked = "ignore";
+		LidSwitchIgnoreInhibited = "yes";
+	};
+
 	# Keep interactive media responsive when builds saturate the machine.
 	services.ananicy = {
 		enable = true;
@@ -320,6 +333,10 @@
 		enable = true;
 		tunMode.enable = true;
 	};
+
+#	services.tailscale = {
+# 		enable = true;
+#	 };
 
 	# Maybe change?
 	networking.firewall.enable = false;

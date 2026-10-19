@@ -1,7 +1,10 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, system, ... }:
 {
 	programs.waybar = {
 		enable = true;
+		# Upstream master: 0.15.0 can't switch workspaces under the Lua Hyprland
+		# config (see the waybar input in flake.nix).
+		package = inputs.waybar.packages.${system}.waybar;
 		settings = {
 			mainBar = {
 				# layer = "overlay";
@@ -21,6 +24,7 @@
 					"cpu"
 					"memory"
 					"tray"
+					"custom/idle" # defined in hypridle.nix
 					"battery"
 				];
 
@@ -139,6 +143,7 @@
 #tray,
 #mode,
 #idle_inhibitor,
+#custom-idle,
 #custom-expand,
 #custom-cycle_wall,
 #custom-ss,
@@ -431,6 +436,15 @@ window#waybar:hover {
 
 #custom-media.custom-vlc {
     background-color: #ffa000;
+}
+
+/* Idle indicator: plain when the machine will dim, lock and suspend as usual */
+#custom-idle.nosleep {
+    color: #f9e2af;
+}
+
+#custom-idle.awake {
+    color: #fab387;
 }
 
 #temperature {
